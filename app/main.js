@@ -1,4 +1,4 @@
-var BrowserWindow, app, electron;
+var BrowserWindow, app, electron, mainWindow;
 
 electron = require('electron');
 
@@ -6,12 +6,13 @@ app = electron.app;
 
 BrowserWindow = electron.BrowserWindow;
 
+mainWindow = null;
+
 app.on("ready", function() {
-  var mainWindow;
   mainWindow = new BrowserWindow({
     "width": 800,
     "height": 600,
     "icon": "app/resources/icon.png"
   });
-  return mainWindow.loadURL("file://" + __dirname + "/index.html");
+  mainWindow.loadURL("file://" + __dirname + "/index.html");
 });
