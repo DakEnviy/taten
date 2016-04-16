@@ -1,13 +1,11 @@
-initUserMedia = (callback) ->
+getUserMedia = (callback) ->
 	browserUserMedia = navigator.getUserMedia ||
 											navigator.webkitGetUserMedia ||
 											navigator.mozGetUserMedia ||
 											navigator.msGetUserMedia
-	if not browserUserMedia
-		callback "Your browser doesn`t support WebRTC"
+	return callback "Your browser doesn`t support WebRTC" if not browserUserMedia
 
-	getUserMedia = browserUserMedia.bind navigator
-	getUserMedia
+	browserUserMedia.bind(navigator)
 		"audio": true
 		"video": true
 		(stream) ->
@@ -15,5 +13,7 @@ initUserMedia = (callback) ->
 		(err) ->
 			callback err
 
-initUserMedia (err, stream) ->
+getUserMedia (err, stream) ->
+	return console.log err if err
+
 	$("video").attr "src", URL.createObjectURL stream
