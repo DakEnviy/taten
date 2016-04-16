@@ -31,7 +31,7 @@ gulp.task('scripts', function() {
 
 gulp.task('libs', function() {
 	gulp.src([
-		'bower_components/jquery/dist/jquery.min.js' // Insert libs in this array
+		'' // Insert libs in this array
 	])
 	.pipe(concat('libs.js')).pipe(gulp.dest('app/resources/'));
 });
