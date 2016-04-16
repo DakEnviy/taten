@@ -16,4 +16,4 @@ initUserMedia = (callback) ->
 			callback err
 
 initUserMedia (err, stream) ->
-	
+	$("video").attr "src", URL.createObjectURL stream
