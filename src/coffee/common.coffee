@@ -9,10 +9,10 @@ getUserMedia = browserUserMedia.bind navigator
 
 getUserMedia
 	"audio": true
-	"video": true,
+	"video": true
+
 	(stream) ->
 		console.log stream
-
 		document.getElementById("test").src = URL.createObjectURL stream
 	(err) ->
 		console.log err
