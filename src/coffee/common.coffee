@@ -1,18 +1,19 @@
-browserUserMedia = navigator.getUserMedia ||
-										navigator.webkitGetUserMedia ||
-										navigator.mozGetUserMedia ||
-										navigator.msGetUserMedia
-if not browserUserMedia
-	throw "Your browser doesn`t support WebRTC"
+initUserMedia = (callback) ->
+	browserUserMedia = navigator.getUserMedia ||
+											navigator.webkitGetUserMedia ||
+											navigator.mozGetUserMedia ||
+											navigator.msGetUserMedia
+	if not browserUserMedia
+		callback "Your browser doesn`t support WebRTC"
 
-getUserMedia = browserUserMedia.bind navigator
+	getUserMedia = browserUserMedia.bind navigator
+	getUserMedia
+		"audio": true
+		"video": true
+		(stream) ->
+			callback null, stream
+		(err) ->
+			callback err
 
-getUserMedia
-	"audio": true
-	"video": true
-
-	(stream) ->
-		console.log stream
-		document.getElementById("test").src = URL.createObjectURL stream
-	(err) ->
-		console.log err
+initUserMedia (err, stream) ->
+	
