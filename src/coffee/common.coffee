@@ -4,16 +4,6 @@ PeerServer = require('peer').PeerServer
 # Classes
 server = PeerServer({port: 9000, path: '/taten'})
 
-
-
-# Main Code
-getUserMedia (err, stream) ->
-	return console.log err if err
-
-	$("video").attr "src", URL.createObjectURL stream
-
-
-
 # Methods
 getUserMedia = (callback) ->
 	browserUserMedia = navigator.getUserMedia ||
@@ -29,3 +19,11 @@ getUserMedia = (callback) ->
 			callback null, stream
 		(err) ->
 			callback err
+
+
+
+# Main Code
+getUserMedia (err, stream) ->
+	return console.log err if err
+
+	$("video").attr "src", URL.createObjectURL stream
